@@ -30,7 +30,6 @@ export async function create(event, context, callback) {
 
 	try {
 		const { Item } = await dynamoDb.put(params).params;
-		console.log(Item);
 		callback(null, response(200, Item));
 	} catch (error) {
 		callback(null, response(500, { status: false, error }));
