@@ -1,0 +1,11 @@
+{
+  "body": "{\"body\":\"Test world\",\"imageUrl\":\"pico.jpg\", \"title\":\"Old pic\"}",
+  "pathParameters": {
+    "id": "add45c90-f207-11ea-a900-d3eb03316377"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

@@ -65,4 +65,20 @@ functions:
           path: blogs/{id}
           method: get
           cors: true
-          # authorizer: aws_iam
+          authorizer: aws_iam
+  myList:
+    handler: src/myList.main
+    events:
+      - http:
+          path: blogs/mylist
+          method: get
+          cors: true
+          authorizer: aws_iam
+  update:
+    handler: src/update.main
+    events:
+      - http:
+          path: blogs/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
