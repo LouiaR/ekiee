@@ -51,7 +51,7 @@ functions:
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
   create:
-    handler: create.main
+    handler: src/create.main
     events:
       - http:
           path: blogs
