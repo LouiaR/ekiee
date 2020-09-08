@@ -58,3 +58,11 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+  getPost:
+    handler: src/get.main
+    events:
+      - http:
+          path: blogs/{id}
+          method: get
+          cors: true
+          # authorizer: aws_iam

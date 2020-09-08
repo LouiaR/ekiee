@@ -10,7 +10,7 @@ export const main = handler(async (evt, ctx) => {
 		TableName: process.env.tableName,
 		Item: {
 			userId: evt.requestContext.identity.cognitoIdentityId,
-			noteId: uuid.v1(),
+			blogId: uuid.v1(),
 			title,
 			body,
 			imageUrl,
