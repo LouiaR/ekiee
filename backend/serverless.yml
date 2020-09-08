@@ -28,6 +28,7 @@ provider:
   # under process.env.
   environment:
     tableName: ${env:TABLE_NAME}
+    stripeSecretKey: ${env:STRIPE_TEST_SECRET_KEY}
 
    # 'iamRoleStatements' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
@@ -82,3 +83,20 @@ functions:
           method: put
           cors: true
           authorizer: aws_iam
+  delete:
+    handler: src/delete.main
+    events:
+      - http:
+          path: blogs/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  billing:
+    handler: src/billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
