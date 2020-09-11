@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 
 import './App.css';
-
+import Layout from './components/Layout';
+import Routes from './components/Routes';
 
 function App() {
-
-
 	return (
-		<h1>Ekiee</h1>
+		<>
+			<Layout>
+				<Routes />
+			</Layout>
+		</>
 	);
 }
 
