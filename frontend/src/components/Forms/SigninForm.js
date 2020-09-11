@@ -1,26 +1,29 @@
 import React from 'react';
-import { Auth } from "aws-amplify";
+import { Auth } from 'aws-amplify';
 
 import Form from '../styles/Form';
 import { useFields } from '../../libs/useFields';
+import { useAppContext } from '../../libs/context';
 
 export const SigninForm = () => {
-	const {fields, change} = useFields();
+	const { fields, change } = useFields();
+	const { userIsAuthenticated } = useAppContext();
 
-	const handleSubmit = async e => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const {username, password } = fields;
+		const { username, password } = fields;
 		try {
 			const user = await Auth.signIn(username, password);
-			console.log("Logged in", user);
+			userIsAuthenticated(true);
 		} catch (e) {
 			alert(e.message);
+			userIsAuthenticated(false);
 		}
-	}
+	};
 
 	return (
 		<Form method='post' onSubmit={handleSubmit}>
-			<fieldset disabled={false} >
+			<fieldset disabled={false}>
 				<h2>Sign into your account</h2>
 				{/* <Error error={error} /> */}
 				<label htmlFor='email'>
@@ -51,6 +54,5 @@ export const SigninForm = () => {
 		</Form>
 	);
 };
-
 
 // 9AphG9pTsmLbiq3

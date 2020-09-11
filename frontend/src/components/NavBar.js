@@ -1,9 +1,11 @@
 import React from 'react';
+import { Auth } from 'aws-amplify';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { menu } from '../data';
 import useCurrentPath from '../libs/useCurrentPath';
+import { useAppContext } from '../libs/context';
 
 const Header = styled.header`
 	display: flex;
@@ -47,8 +49,14 @@ const Logo = styled.span`
 
 const NavBar = () => {
 	const current = useCurrentPath();
+	const { isUserAuthenticated, userIsAuthenticated } = useAppContext();
 
-  return (
+	const logout = () => {
+		Auth.signOut();
+		userIsAuthenticated(false)
+	};
+
+	return (
 		<Header>
 			<h1>
 				<Logo>
@@ -56,13 +64,21 @@ const NavBar = () => {
 				</Logo>
 			</h1>
 			<Nav>
-				<List>
-					{menu.map((item) => (
-						<Item key={item.item.path} select={current.path === item.item.path}>
-							<Link to={item.item.path}>{item.item.title}</Link>
-						</Item>
-					))}
-				</List>
+				{isUserAuthenticated ? (
+					<List onClick={logout}>
+						<Item>Logout</Item>
+					</List>
+				) : (
+					<List>
+						{menu.map((item) => (
+							<Item
+								key={item.item.path}
+								select={current.path === item.item.path}>
+								<Link to={item.item.path}>{item.item.title}</Link>
+							</Item>
+						))}
+					</List>
+				)}
 			</Nav>
 		</Header>
 	);
