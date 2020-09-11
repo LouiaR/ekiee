@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
+import { useHistory } from 'react-router-dom';
 
 import Form from '../styles/Form';
 import { useFields } from '../../libs/useFields';
@@ -8,13 +9,18 @@ import { useAppContext } from '../../libs/context';
 export const SigninForm = () => {
 	const { fields, change } = useFields();
 	const { userIsAuthenticated } = useAppContext();
+	const [isLoading, setIsLoading] = useState(false);
+	const history = useHistory();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { username, password } = fields;
+		setIsLoading(true);
 		try {
 			const user = await Auth.signIn(username, password);
 			userIsAuthenticated(true);
+			setIsLoading(false);
+			history.push('/');
 		} catch (e) {
 			alert(e.message);
 			userIsAuthenticated(false);
@@ -23,7 +29,7 @@ export const SigninForm = () => {
 
 	return (
 		<Form method='post' onSubmit={handleSubmit}>
-			<fieldset disabled={false}>
+			<fieldset disabled={isLoading} aria-busy={isLoading}>
 				<h2>Sign into your account</h2>
 				{/* <Error error={error} /> */}
 				<label htmlFor='email'>

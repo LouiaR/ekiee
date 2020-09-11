@@ -2,6 +2,7 @@ import React from 'react';
 import { Auth } from 'aws-amplify';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { menu } from '../data';
 import useCurrentPath from '../libs/useCurrentPath';
@@ -50,10 +51,12 @@ const Logo = styled.span`
 const NavBar = () => {
 	const current = useCurrentPath();
 	const { isUserAuthenticated, userIsAuthenticated } = useAppContext();
+	const history = useHistory();
 
 	const logout = () => {
 		Auth.signOut();
-		userIsAuthenticated(false)
+		userIsAuthenticated(false);
+		history.push('/signin');
 	};
 
 	return (
