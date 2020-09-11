@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { menu } from '../data';
-import useCurrentPath from './libs/useCurrentPath';
+import useCurrentPath from '../libs/useCurrentPath';
 
 const Header = styled.header`
 	display: flex;
@@ -48,7 +48,7 @@ const Logo = styled.span`
 const NavBar = () => {
 	const current = useCurrentPath();
 
-	return (
+  return (
 		<Header>
 			<h1>
 				<Logo>

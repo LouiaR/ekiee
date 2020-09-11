@@ -17,7 +17,7 @@ const useCurrentPath = () => {
 			setPath(path);
 		});
 		setRoute();
-	}, []);
+	}, [history]);
 	return { path };
 };
 
