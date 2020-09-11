@@ -24,6 +24,7 @@ export const SigninForm = () => {
 		} catch (e) {
 			alert(e.message);
 			userIsAuthenticated(false);
+			setIsLoading(false);
 		}
 	};
 

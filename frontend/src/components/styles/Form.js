@@ -27,6 +27,10 @@ const Form = styled.form`
 		max-width: 70%;
 	}
 
+	h2 {
+		margin: 1rem 0;
+	}
+
 	label {
 		display: block;
 		margin-bottom: 1rem;

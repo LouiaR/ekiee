@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from '../pages';
 import Notfound from '../pages/notfound';
-import Login from '../pages/Login';
+import Login from '../pages/login';
+import Signup from '../pages/signup';
 
 export default function Routes() {
 
@@ -14,6 +15,9 @@ export default function Routes() {
 			</Route>
 			<Route exact path='/signin'>
 				<Login />
+			</Route>
+			<Route exact path='/signup'>
+				<Signup />
 			</Route>
 			<Route>
 				<Notfound />

@@ -5,6 +5,7 @@ const initialState = {
 	name: '',
 	confirmationCode: '',
 	password: '',
+	confirmPassword: '',
 };
 
 export const useFields = () => {
